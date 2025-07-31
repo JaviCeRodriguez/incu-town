@@ -1,0 +1,22 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <!-- Cuerpo -->
+  <rect x="8" y="16" width="16" height="12" fill="#4A90E2" rx="2"/>
+  
+  <!-- Cabeza -->
+  <circle cx="16" cy="10" r="6" fill="#FFB88C"/>
+  
+  <!-- Ojos -->
+  <circle cx="13" cy="8" r="1" fill="#333"/>
+  <circle cx="19" cy="8" r="1" fill="#333"/>
+  
+  <!-- Pelo -->
+  <path d="M10 6 Q16 2 22 6 Q22 10 16 10 Q10 10 10 6" fill="#8B4513"/>
+  
+  <!-- Brazos -->
+  <rect x="4" y="18" width="4" height="8" fill="#FFB88C" rx="2"/>
+  <rect x="24" y="18" width="4" height="8" fill="#FFB88C" rx="2"/>
+  
+  <!-- Piernas -->
+  <rect x="10" y="28" width="4" height="4" fill="#333"/>
+  <rect x="18" y="28" width="4" height="4" fill="#333"/>
+</svg>

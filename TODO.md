@@ -17,10 +17,10 @@
 
 #### 🎮 **Sistema de Jugador**
 
-- [ ] Mejorar sprites del jugador (reemplazar rectángulos por sprites reales)
-- [ ] Animaciones de caminar para diferentes direcciones
-- [ ] Sistema de idle/walking con animaciones suaves
-- [ ] Indicador visual de nombre del jugador mejorado
+- [x] Mejorar sprites del jugador (reemplazar rectángulos por sprites reales)
+- [x] Animaciones de caminar para diferentes direcciones
+- [x] Sistema de idle/walking con animaciones suaves
+- [x] Indicador visual de nombre del jugador mejorado
 - [ ] Estados adicionales (corriendo, interactuando)
 
 #### 🗺️ **Sistema de Mundo**
@@ -257,15 +257,16 @@
 
 ### 🎯 **Prioridades Actuales**
 
-1. **Corregir problema de Node.js/Vite** - Resolver compatibilidad
-2. **Mejorar sprites visuales** - Reemplazar rectángulos por gráficos reales
+1. **Corregir problema de Node.js/Vite** - Resolver compatibilidad ⚠️
+2. ~~**Mejorar sprites visuales**~~ - ✅ **COMPLETADO** - Sprites animados implementados
 3. **Implementar backend básico** - Socket.io server para multijugador
 4. **Sistema de colisiones** - Mejorar detección con objetos del mapa
+5. **Cargar mapas JSON** - Sistema de mapas dinámicos
 
 ### 🚧 **Bloqueos Conocidos**
 
-- Incompatibilidad Node.js v18 con Vite 7.x (necesita Node.js >=20)
-- Falta de sprites/assets gráficos
+- Incompatibilidad Node.js v18 con Vite 7.x (necesita Node.js >=20) ⚠️
+- ~~Falta de sprites/assets gráficos~~ ✅ **RESUELTO**
 - No hay backend implementado aún
 
 ### 💡 **Ideas para Investigar**

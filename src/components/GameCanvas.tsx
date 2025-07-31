@@ -6,6 +6,7 @@ import { useGameLoop } from "../hooks/useGameLoop";
 import { GAME_CONFIG } from "../constants/gameConstants";
 import World from "./World";
 import Player from "./Player";
+import PlayerSpawner from "./PlayerSpawner";
 
 const GameCanvas: React.FC = () => {
   const player = useGameStore((state) => state.player);
@@ -27,6 +28,9 @@ const GameCanvas: React.FC = () => {
 
   return (
     <div className="game-container">
+      {/* Spawner de jugadores de prueba */}
+      <PlayerSpawner />
+
       <Stage
         width={GAME_CONFIG.CANVAS_WIDTH}
         height={GAME_CONFIG.CANVAS_HEIGHT}
