@@ -3,16 +3,19 @@ import { Rect, Group } from "react-konva";
 import { useGameStore } from "../store/gameStore";
 import { getGlobalCollisionSystem } from "../utils/collisionSystem";
 import { GAME_CONFIG } from "../constants/gameConstants";
+import { isDebugEnabled } from "../utils/debug";
 
 interface CollisionDebugProps {
   enabled?: boolean;
 }
 
 const CollisionDebug: React.FC<CollisionDebugProps> = ({ enabled = false }) => {
+  // Solo mostrar si debug está habilitado Y el prop enabled es true
+  const shouldShow = enabled && isDebugEnabled();
   const player = useGameStore((state) => state.player);
   const [showNearbyTiles, setShowNearbyTiles] = useState(false);
 
-  if (!enabled) return null;
+  if (!shouldShow) return null;
 
   const collisionSystem = getGlobalCollisionSystem();
   if (!collisionSystem) return null;

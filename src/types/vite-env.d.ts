@@ -4,6 +4,7 @@
 interface ImportMetaEnv {
   readonly VITE_APP_TITLE: string;
   readonly VITE_WEBSOCKET_URL: string;
+  readonly VITE_DEBUG: string;
   // más variables de entorno aquí según se necesiten
 }
 

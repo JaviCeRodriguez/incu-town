@@ -88,10 +88,31 @@ src/
 
 ## 🛠️ Scripts Disponibles
 
-- `pnpm run dev` - Inicia el servidor de desarrollo
+### Desarrollo
+
+- `pnpm run dev` - Inicia el servidor de desarrollo (usa .env.local)
+- `pnpm run dev:debug` - Desarrollo con debug forzado (VITE_DEBUG=1)
+- `pnpm run dev:no-debug` - Desarrollo sin debug (VITE_DEBUG=0)
+
+### Producción
+
 - `pnpm run build` - Construye la aplicación para producción
+- `pnpm run build:debug` - Build con herramientas de debug habilitadas
+- `pnpm run build:prod` - Build de producción sin debug
+
+### Otras utilidades
+
 - `pnpm run preview` - Previsualiza la build de producción
 - `pnpm run lint` - Ejecuta el linter de código
+
+### 🐛 Modo Debug
+
+El modo debug se controla con la variable `VITE_DEBUG`:
+
+- **Habilitado**: Muestra hitboxes, información de colisiones y logs en consola
+- **Deshabilitado**: Interfaz limpia para producción
+
+Ver `docs/ENV_SETUP.md` para más detalles sobre configuración.
 
 ## 🤝 Contribución
 

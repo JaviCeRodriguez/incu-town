@@ -222,6 +222,14 @@
 - [ ] Protección CSRF
 - [ ] Headers de seguridad
 
+#### 🐛 **Sistema de Debug**
+
+- [x] Variables de entorno para debug (VITE_DEBUG)
+- [x] Utilidades de logging condicional
+- [x] Debug visual de colisiones
+- [x] Scripts de npm para diferentes modos
+- [x] Documentación de configuración
+
 #### 🧪 **Testing**
 
 - [ ] Tests unitarios con Vitest
@@ -260,9 +268,10 @@
 1. ~~**Corregir problema de Node.js/Vite**~~ - ✅ **COMPLETADO** - Resuelto por el usuario
 2. ~~**Mejorar sprites visuales**~~ - ✅ **COMPLETADO** - Sprites animados implementados
 3. ~~**Sistema de colisiones**~~ - ✅ **COMPLETADO** - Sistema robusto con debug visual
-4. **Implementar backend básico** - Socket.io server para multijugador 🔥 **PRÓXIMO**
-5. **Cargar mapas JSON** - Sistema de mapas dinámicos
-6. **Sistema de proximidad** - Detectar jugadores cercanos
+4. ~~**Sistema de debug configurable**~~ - ✅ **COMPLETADO** - Variables de entorno + utilidades
+5. **Implementar backend básico** - Socket.io server para multijugador 🔥 **PRÓXIMO**
+6. **Cargar mapas JSON** - Sistema de mapas dinámicos
+7. **Sistema de proximidad** - Detectar jugadores cercanos
 
 ### 🚧 **Bloqueos Conocidos**
 

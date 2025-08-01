@@ -1,5 +1,6 @@
 import { GAME_CONFIG, TILE_TYPES } from "../constants/gameConstants";
 import type { TileType } from "../types/game";
+import { debugLog, debugWarn } from "./debug";
 
 // Sistema de colisiones para el juego
 export class CollisionSystem {
@@ -13,6 +14,12 @@ export class CollisionSystem {
     this.tileSize = GAME_CONFIG.TILE_SIZE;
     this.mapHeight = map.length;
     this.mapWidth = map[0]?.length || 0;
+
+    debugLog("CollisionSystem initialized", {
+      mapWidth: this.mapWidth,
+      mapHeight: this.mapHeight,
+      tileSize: this.tileSize,
+    });
   }
 
   // Convertir coordenadas del mundo a coordenadas de tile
@@ -110,6 +117,16 @@ export class CollisionSystem {
 
     // Luego intentar movimiento en Y
     const resolvedY = this.resolveCollisionY(resolvedX, currentY, targetY);
+
+    // Log solo si hubo colisión
+    if (resolvedX !== targetX || resolvedY !== targetY) {
+      debugLog("Collision detected", {
+        target: { x: targetX, y: targetY },
+        resolved: { x: resolvedX, y: resolvedY },
+        blockedX: resolvedX !== targetX,
+        blockedY: resolvedY !== targetY,
+      });
+    }
 
     return { x: resolvedX, y: resolvedY };
   }

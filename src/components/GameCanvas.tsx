@@ -8,11 +8,14 @@ import World from "./World";
 import Player from "./Player";
 import PlayerSpawner from "./PlayerSpawner";
 import CollisionDebug from "./CollisionDebug";
+import { isDebugEnabled } from "../utils/debug";
+import { runDebugTests } from "../utils/debugTest";
 
 const GameCanvas: React.FC = () => {
   const player = useGameStore((state) => state.player);
   const otherPlayers = useGameStore((state) => state.otherPlayers);
   const setGameLoaded = useGameStore((state) => state.setGameLoaded);
+  const debugEnabled = isDebugEnabled();
 
   // Inicializar hooks del juego
   useKeyboard();
@@ -22,10 +25,15 @@ const GameCanvas: React.FC = () => {
     // Marcar el juego como cargado
     setGameLoaded(true);
 
+    // Ejecutar tests de debug si está habilitado
+    if (debugEnabled) {
+      runDebugTests();
+    }
+
     return () => {
       setGameLoaded(false);
     };
-  }, [setGameLoaded]);
+  }, [setGameLoaded, debugEnabled]);
 
   return (
     <div className="game-container">
@@ -52,8 +60,8 @@ const GameCanvas: React.FC = () => {
             />
           ))}
 
-          {/* Debug de colisiones (activado con D) */}
-          <CollisionDebug enabled={true} />
+          {/* Debug de colisiones (controlado por VITE_DEBUG) */}
+          <CollisionDebug enabled={debugEnabled} />
         </Layer>
       </Stage>
 
@@ -67,15 +75,27 @@ const GameCanvas: React.FC = () => {
           </p>
           <p>Estado: {player.state}</p>
           <p>Dirección: {player.direction}</p>
-          <hr style={{ margin: "10px 0", opacity: 0.3 }} />
-          <h4>Sistema de Colisiones:</h4>
-          <p style={{ fontSize: "0.8rem", color: "#888" }}>
-            Línea roja: Hitbox del jugador
-            <br />
-            Cuadro amarillo: Tile actual
-            <br />
-            Intenta caminar hacia las paredes grises
-          </p>
+
+          {/* Información de debug solo si está habilitado */}
+          {debugEnabled && (
+            <>
+              <hr style={{ margin: "10px 0", opacity: 0.3 }} />
+              <h4>Sistema de Colisiones:</h4>
+              <p style={{ fontSize: "0.8rem", color: "#888" }}>
+                Línea roja: Hitbox del jugador
+                <br />
+                Cuadro amarillo: Tile actual
+                <br />
+                Intenta caminar hacia las paredes grises
+              </p>
+              <p
+                style={{ fontSize: "0.7rem", color: "#666", marginTop: "8px" }}
+              >
+                🐛 Modo Debug: VITE_DEBUG=
+                {import.meta.env.VITE_DEBUG || "undefined"}
+              </p>
+            </>
+          )}
         </div>
       </div>
     </div>
