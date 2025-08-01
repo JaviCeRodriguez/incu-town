@@ -26,7 +26,7 @@
 #### 🗺️ **Sistema de Mundo**
 
 - [ ] Cargar mapas desde archivos JSON
-- [ ] Colisiones mejoradas con obstáculos
+- [x] Colisiones mejoradas con obstáculos
 - [ ] Múltiples salas/niveles
 - [ ] Tiles decorativos (árboles, mesas, sillas)
 - [ ] Sistema de teleportación entre áreas
@@ -257,17 +257,18 @@
 
 ### 🎯 **Prioridades Actuales**
 
-1. **Corregir problema de Node.js/Vite** - Resolver compatibilidad ⚠️
+1. ~~**Corregir problema de Node.js/Vite**~~ - ✅ **COMPLETADO** - Resuelto por el usuario
 2. ~~**Mejorar sprites visuales**~~ - ✅ **COMPLETADO** - Sprites animados implementados
-3. **Implementar backend básico** - Socket.io server para multijugador
-4. **Sistema de colisiones** - Mejorar detección con objetos del mapa
+3. ~~**Sistema de colisiones**~~ - ✅ **COMPLETADO** - Sistema robusto con debug visual
+4. **Implementar backend básico** - Socket.io server para multijugador 🔥 **PRÓXIMO**
 5. **Cargar mapas JSON** - Sistema de mapas dinámicos
+6. **Sistema de proximidad** - Detectar jugadores cercanos
 
 ### 🚧 **Bloqueos Conocidos**
 
-- Incompatibilidad Node.js v18 con Vite 7.x (necesita Node.js >=20) ⚠️
+- ~~Incompatibilidad Node.js v18 con Vite 7.x~~ ✅ **RESUELTO** - Usuario actualizó Node.js
 - ~~Falta de sprites/assets gráficos~~ ✅ **RESUELTO**
-- No hay backend implementado aún
+- No hay backend implementado aún 🔥 **SIGUIENTE PRIORIDAD**
 
 ### 💡 **Ideas para Investigar**
 

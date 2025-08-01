@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Rect, Line } from "react-konva";
 import { GAME_CONFIG, TILE_TYPES } from "../constants/gameConstants";
 import type { TileType } from "../types/game";
+import {
+  CollisionSystem,
+  setGlobalCollisionSystem,
+} from "../utils/collisionSystem";
 
 const World: React.FC = () => {
   // Crear un mapa básico con algunos obstáculos
@@ -37,6 +41,12 @@ const World: React.FC = () => {
   };
 
   const map = createBasicMap();
+
+  // Inicializar el sistema de colisiones
+  useEffect(() => {
+    const collisionSystem = new CollisionSystem(map);
+    setGlobalCollisionSystem(collisionSystem);
+  }, [map]);
 
   const renderTiles = () => {
     const tiles = [];

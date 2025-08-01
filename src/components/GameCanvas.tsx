@@ -7,6 +7,7 @@ import { GAME_CONFIG } from "../constants/gameConstants";
 import World from "./World";
 import Player from "./Player";
 import PlayerSpawner from "./PlayerSpawner";
+import CollisionDebug from "./CollisionDebug";
 
 const GameCanvas: React.FC = () => {
   const player = useGameStore((state) => state.player);
@@ -50,6 +51,9 @@ const GameCanvas: React.FC = () => {
               isCurrentPlayer={false}
             />
           ))}
+
+          {/* Debug de colisiones (activado con D) */}
+          <CollisionDebug enabled={true} />
         </Layer>
       </Stage>
 
@@ -63,6 +67,15 @@ const GameCanvas: React.FC = () => {
           </p>
           <p>Estado: {player.state}</p>
           <p>Dirección: {player.direction}</p>
+          <hr style={{ margin: "10px 0", opacity: 0.3 }} />
+          <h4>Sistema de Colisiones:</h4>
+          <p style={{ fontSize: "0.8rem", color: "#888" }}>
+            Línea roja: Hitbox del jugador
+            <br />
+            Cuadro amarillo: Tile actual
+            <br />
+            Intenta caminar hacia las paredes grises
+          </p>
         </div>
       </div>
     </div>

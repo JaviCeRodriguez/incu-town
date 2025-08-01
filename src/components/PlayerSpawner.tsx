@@ -6,28 +6,28 @@ const PlayerSpawner: React.FC = () => {
   const updateOtherPlayer = useGameStore((state) => state.updateOtherPlayer);
 
   useEffect(() => {
-    // Agregar algunos jugadores de prueba
+    // Agregar algunos jugadores de prueba en posiciones válidas
     const testPlayers = [
       {
         id: "player1",
-        x: 200,
-        y: 150,
+        x: 160, // 5 tiles desde el borde izquierdo
+        y: 128, // 4 tiles desde el borde superior
         direction: "down" as const,
         state: "idle" as const,
         name: "Ana",
       },
       {
         id: "player2",
-        x: 400,
-        y: 300,
+        x: 320, // Posición segura lejos de paredes internas
+        y: 256,
         direction: "right" as const,
         state: "walking" as const,
         name: "Carlos",
       },
       {
         id: "player3",
-        x: 600,
-        y: 200,
+        x: 480, // Posición segura
+        y: 192,
         direction: "left" as const,
         state: "walking" as const,
         name: "María",

@@ -5,13 +5,14 @@ import {
   DIRECTIONS,
 } from "../constants/gameConstants";
 import type { GameStore } from "../types/game";
+import { resolvePlayerMovement } from "../utils/collisionSystem";
 
 export const useGameStore = create<GameStore>((set, get) => ({
   // Estado del jugador
   player: {
     id: null,
-    x: 100,
-    y: 100,
+    x: 64, // Posición inicial segura (2 tiles desde el borde)
+    y: 64, // Posición inicial segura (2 tiles desde el borde)
     direction: DIRECTIONS.DOWN,
     state: PLAYER_STATES.IDLE,
     name: "Jugador",
@@ -122,19 +123,20 @@ export const useGameStore = create<GameStore>((set, get) => ({
     }));
   },
 
-  // Lógica de movimiento
+  // Lógica de movimiento con colisiones
   movePlayer: () => {
     const { player, keysPressed } = get();
-    let newX = player.x;
-    let newY = player.y;
+    let targetX = player.x;
+    let targetY = player.y;
     let direction = player.direction;
     let state = PLAYER_STATES.IDLE;
 
+    // Calcular movimiento deseado
     if (
       keysPressed.has(GAME_CONFIG.KEYS.UP) ||
       keysPressed.has(GAME_CONFIG.KEYS.W)
     ) {
-      newY -= GAME_CONFIG.PLAYER_SPEED;
+      targetY -= GAME_CONFIG.PLAYER_SPEED;
       direction = DIRECTIONS.UP;
       state = PLAYER_STATES.WALKING;
     }
@@ -142,7 +144,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
       keysPressed.has(GAME_CONFIG.KEYS.DOWN) ||
       keysPressed.has(GAME_CONFIG.KEYS.S)
     ) {
-      newY += GAME_CONFIG.PLAYER_SPEED;
+      targetY += GAME_CONFIG.PLAYER_SPEED;
       direction = DIRECTIONS.DOWN;
       state = PLAYER_STATES.WALKING;
     }
@@ -150,7 +152,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
       keysPressed.has(GAME_CONFIG.KEYS.LEFT) ||
       keysPressed.has(GAME_CONFIG.KEYS.A)
     ) {
-      newX -= GAME_CONFIG.PLAYER_SPEED;
+      targetX -= GAME_CONFIG.PLAYER_SPEED;
       direction = DIRECTIONS.LEFT;
       state = PLAYER_STATES.WALKING;
     }
@@ -158,26 +160,34 @@ export const useGameStore = create<GameStore>((set, get) => ({
       keysPressed.has(GAME_CONFIG.KEYS.RIGHT) ||
       keysPressed.has(GAME_CONFIG.KEYS.D)
     ) {
-      newX += GAME_CONFIG.PLAYER_SPEED;
+      targetX += GAME_CONFIG.PLAYER_SPEED;
       direction = DIRECTIONS.RIGHT;
       state = PLAYER_STATES.WALKING;
     }
 
     // Limitar movimiento dentro del canvas
-    newX = Math.max(
+    targetX = Math.max(
       0,
-      Math.min(newX, GAME_CONFIG.CANVAS_WIDTH - GAME_CONFIG.PLAYER_WIDTH)
+      Math.min(targetX, GAME_CONFIG.CANVAS_WIDTH - GAME_CONFIG.PLAYER_WIDTH)
     );
-    newY = Math.max(
+    targetY = Math.max(
       0,
-      Math.min(newY, GAME_CONFIG.CANVAS_HEIGHT - GAME_CONFIG.PLAYER_HEIGHT)
+      Math.min(targetY, GAME_CONFIG.CANVAS_HEIGHT - GAME_CONFIG.PLAYER_HEIGHT)
+    );
+
+    // Resolver colisiones - esto calculará la posición final válida
+    const resolvedPosition = resolvePlayerMovement(
+      player.x,
+      player.y,
+      targetX,
+      targetY
     );
 
     set((currentState) => ({
       player: {
         ...currentState.player,
-        x: newX,
-        y: newY,
+        x: resolvedPosition.x,
+        y: resolvedPosition.y,
         direction,
         state,
       },
