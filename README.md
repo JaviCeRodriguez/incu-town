@@ -6,8 +6,10 @@ Un mundo virtual multijugador similar a Gather Town, construido con React y tecn
 
 - **Mundo Virtual 2D**: Navega por un entorno virtual en tiempo real
 - **Movimiento Fluido**: Controles intuitivos con teclado (WASD / Flechas)
+- **Audio por Proximidad**: Sistema similar a Gather Town con lista estilo Discord
+- **Colisiones Inteligentes**: Sistema robusto de detección de obstáculos
 - **Salas Multiplayer**: Crea o únete a salas privadas con amigos
-- **Interfaz Moderna**: UI responsive y atractiva
+- **Interfaz Moderna**: UI responsive y atractiva con debug configurable
 - **Arquitectura Escalable**: Base sólida para agregar más funcionalidades
 
 ## 🛠️ Tecnologías Utilizadas
@@ -112,7 +114,10 @@ El modo debug se controla con la variable `VITE_DEBUG`:
 - **Habilitado**: Muestra hitboxes, información de colisiones y logs en consola
 - **Deshabilitado**: Interfaz limpia para producción
 
-Ver `docs/ENV_SETUP.md` para más detalles sobre configuración.
+### 📚 Documentación Adicional
+
+- `docs/ENV_SETUP.md` - Configuración de variables de entorno
+- `docs/PROXIMITY_AUDIO.md` - Sistema de audio por proximidad
 
 ## 🤝 Contribución
 

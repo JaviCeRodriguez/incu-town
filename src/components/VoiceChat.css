@@ -1,0 +1,439 @@
+/* Componente VoiceChat estilo Discord */
+.voice-chat {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 280px;
+  height: 100vh;
+  background: #2f3136;
+  font-family: 'Whitney', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #dcddde;
+  z-index: 1000;
+  border-left: 1px solid #40444b;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.3);
+}
+
+.voice-chat-header {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  background: #36393f;
+  border-bottom: 1px solid #40444b;
+  flex-shrink: 0;
+}
+
+.voice-icon {
+  font-size: 16px;
+  margin-right: 8px;
+}
+
+.voice-chat-header h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  flex: 1;
+}
+
+.player-count {
+  background: #5865f2;
+  color: white;
+  border-radius: 12px;
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  min-width: 20px;
+  text-align: center;
+}
+
+.voice-chat-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px 0;
+  min-height: 0;
+}
+
+.voice-chat-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.voice-chat-list::-webkit-scrollbar-track {
+  background: #2f3136;
+}
+
+.voice-chat-list::-webkit-scrollbar-thumb {
+  background: #202225;
+  border-radius: 3px;
+}
+
+.voice-player {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  margin: 2px 8px;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+  position: relative;
+}
+
+.voice-player:hover {
+  background: #36393f;
+}
+
+.voice-player.talking {
+  background: rgba(88, 101, 242, 0.1);
+  border-left: 3px solid #5865f2;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    background: rgba(88, 101, 242, 0.1); 
+  }
+  50% { 
+    background: rgba(88, 101, 242, 0.2); 
+  }
+}
+
+.player-avatar {
+  position: relative;
+  margin-right: 12px;
+}
+
+.avatar-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.talking-indicator {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 12px;
+  height: 12px;
+  background: #23d160;
+  border-radius: 50%;
+  border: 2px solid #2f3136;
+  animation: talking-pulse 1.5s infinite;
+}
+
+@keyframes talking-pulse {
+  0%, 100% { 
+    transform: scale(1);
+    background: #23d160;
+  }
+  50% { 
+    transform: scale(1.2);
+    background: #00d26a;
+  }
+}
+
+.player-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.player-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.speaking-text {
+  font-size: 11px;
+  color: #23d160;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.audio-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.volume-icon {
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.volume-bar {
+  flex: 1;
+  height: 4px;
+  background: #40444b;
+  border-radius: 2px;
+  overflow: hidden;
+  min-width: 60px;
+}
+
+.volume-fill {
+  height: 100%;
+  transition: width 0.3s ease, background-color 0.3s ease;
+  border-radius: 2px;
+}
+
+.volume-text {
+  font-size: 11px;
+  color: #b9bbbe;
+  font-weight: 500;
+  min-width: 30px;
+  text-align: right;
+}
+
+.debug-info {
+  margin-top: 4px;
+}
+
+.debug-info small {
+  color: #72767d;
+  font-size: 10px;
+}
+
+.voice-debug {
+  padding: 12px 16px;
+  border-top: 1px solid #40444b;
+  background: rgba(114, 118, 125, 0.1);
+  flex-shrink: 0;
+}
+
+.voice-debug small {
+  color: #72767d;
+  font-size: 11px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .voice-chat {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 2000;
+  }
+  
+  .voice-chat-header {
+    padding: 12px;
+  }
+  
+  .voice-player {
+    padding: 8px 12px;
+  }
+  
+  .avatar-circle {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+}
+
+/* Estados de conexión */
+.voice-chat.connecting {
+  opacity: 0.7;
+}
+
+.voice-chat.connecting::after {
+  content: "Conectando...";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+/* Animación de entrada */
+.voice-chat {
+  animation: slideInRight 0.3s ease-out;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Hover effects para mejor UX */
+.voice-player:hover .volume-bar {
+  background: #484b51;
+}
+
+.voice-player:hover .player-name {
+  color: #ffffff;
+}
+
+/* Estilos para el jugador actual */
+.voice-player.current-player {
+  background: rgba(88, 101, 242, 0.15);
+  border-left: 3px solid #5865f2;
+}
+
+.voice-player.current-player:hover {
+  background: rgba(88, 101, 242, 0.25);
+}
+
+.current-player-badge {
+  background: #5865f2;
+  color: white;
+  border-radius: 10px;
+  padding: 2px 6px;
+  font-size: 10px;
+  font-weight: 600;
+  margin-left: 6px;
+  text-transform: uppercase;
+}
+
+.voice-player.current-player .avatar-circle {
+  border: 2px solid #5865f2;
+  box-shadow: 0 0 8px rgba(88, 101, 242, 0.5);
+  transition: all 0.3s ease;
+}
+
+/* Borde verde cuando está hablando */
+.voice-player.current-player.talking .avatar-circle {
+  border: 3px solid #23d160;
+  box-shadow: 0 0 12px rgba(35, 209, 96, 0.8);
+  animation: talking-border-pulse 1.5s infinite;
+}
+
+@keyframes talking-border-pulse {
+  0%, 100% { 
+    border-color: #23d160;
+    box-shadow: 0 0 12px rgba(35, 209, 96, 0.8);
+  }
+  50% { 
+    border-color: #00d26a;
+    box-shadow: 0 0 16px rgba(35, 209, 96, 1);
+  }
+}
+
+.voice-player.current-player .player-name {
+  color: #5865f2;
+  font-weight: 600;
+}
+
+.voice-player.current-player .volume-icon {
+  animation: mic-pulse 2s infinite;
+}
+
+@keyframes mic-pulse {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% { 
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+/* Estado de hablando para jugador actual */
+.voice-player.current-player.talking {
+  background: rgba(35, 209, 96, 0.15);
+  border-left: 3px solid #23d160;
+  animation: current-player-talking 2s infinite;
+}
+
+@keyframes current-player-talking {
+  0%, 100% { 
+    background: rgba(35, 209, 96, 0.15); 
+  }
+  50% { 
+    background: rgba(35, 209, 96, 0.25); 
+  }
+}
+
+/* Indicador adicional de hablando para jugador actual */
+.voice-player.current-player.talking::before {
+  content: "🎤";
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 12px;
+  animation: mic-bounce 1s infinite;
+  z-index: 10;
+}
+
+/* Indicador de estado del micrófono */
+.voice-player.current-player .microphone-status {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #95a5a6;
+  animation: status-pulse 2s infinite;
+}
+
+.voice-player.current-player .microphone-status.listening {
+  background: #2ecc71;
+}
+
+.voice-player.current-player .microphone-status.error {
+  background: #e74c3c;
+  animation: error-blink 1s infinite;
+}
+
+@keyframes status-pulse {
+  0%, 100% { 
+    opacity: 0.6;
+  }
+  50% { 
+    opacity: 1;
+  }
+}
+
+@keyframes error-blink {
+  0%, 100% { 
+    opacity: 1;
+  }
+  50% { 
+    opacity: 0.3;
+  }
+}
+
+@keyframes mic-bounce {
+  0%, 100% { 
+    transform: scale(1);
+  }
+  50% { 
+    transform: scale(1.2);
+  }
+}
+
+.voice-player.current-player.talking .current-player-badge {
+  background: #23d160;
+  animation: badge-pulse 1.5s infinite;
+}
+
+@keyframes badge-pulse {
+  0%, 100% { 
+    transform: scale(1);
+  }
+  50% { 
+    transform: scale(1.1);
+  }
+}

@@ -8,6 +8,8 @@ import World from "./World";
 import Player from "./Player";
 import PlayerSpawner from "./PlayerSpawner";
 import CollisionDebug from "./CollisionDebug";
+import ProximityDebug from "./ProximityDebug";
+import VoiceChat from "./VoiceChat";
 import { isDebugEnabled } from "../utils/debug";
 import { runDebugTests } from "../utils/debugTest";
 
@@ -62,6 +64,9 @@ const GameCanvas: React.FC = () => {
 
           {/* Debug de colisiones (controlado por VITE_DEBUG) */}
           <CollisionDebug enabled={debugEnabled} />
+
+          {/* Debug de proximidad (controlado por VITE_DEBUG) */}
+          <ProximityDebug enabled={debugEnabled} />
         </Layer>
       </Stage>
 
@@ -80,14 +85,24 @@ const GameCanvas: React.FC = () => {
           {debugEnabled && (
             <>
               <hr style={{ margin: "10px 0", opacity: 0.3 }} />
-              <h4>Sistema de Colisiones:</h4>
-              <p style={{ fontSize: "0.8rem", color: "#888" }}>
-                Línea roja: Hitbox del jugador
+              <h4>Sistemas de Debug:</h4>
+              <div style={{ fontSize: "0.8rem", color: "#888" }}>
+                <strong>Colisiones:</strong>
                 <br />
-                Cuadro amarillo: Tile actual
+                • Línea roja: Hitbox del jugador
                 <br />
-                Intenta caminar hacia las paredes grises
-              </p>
+                • Cuadro amarillo: Tile actual
+                <br />
+                <br />
+                <strong>Audio por proximidad:</strong>
+                <br />
+                • Verde: Audio 100% (1 tile)
+                <br />
+                • Naranja: Audio 50% (3 tiles)
+                <br />
+                • Rojo: Límite audio (6 tiles)
+                <br />• Azul: Rango Discord (5 tiles)
+              </div>
               <p
                 style={{ fontSize: "0.7rem", color: "#666", marginTop: "8px" }}
               >
@@ -98,6 +113,9 @@ const GameCanvas: React.FC = () => {
           )}
         </div>
       </div>
+
+      {/* Chat de voz por proximidad - Sidebar derecho */}
+      <VoiceChat />
     </div>
   );
 };

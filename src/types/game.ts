@@ -63,3 +63,32 @@ export interface PageProps {
   onJoinGame?: () => void;
   onLeaveGame?: () => void;
 }
+
+// Tipos para el sistema de audio por proximidad
+export interface ProximityResult {
+  distance: number;
+  audioVolume: number;
+  isInDiscordRange: boolean;
+  isAudible: boolean;
+}
+
+export interface PlayerProximity {
+  player: Player;
+  proximity: ProximityResult;
+}
+
+export interface VoiceState {
+  isTalking: boolean;
+  volume: number;
+  lastActivity: number;
+}
+
+export interface OfficeZone {
+  id: string;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  name: string;
+  isPrivate: boolean;
+}

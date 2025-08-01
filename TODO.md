@@ -34,8 +34,8 @@
 
 #### 🎯 **Mecánicas de Juego**
 
-- [ ] Sistema de proximidad (detectar jugadores cercanos)
-- [ ] Áreas de interacción (círculos de proximidad)
+- [x] Sistema de proximidad (detectar jugadores cercanos)
+- [x] Áreas de interacción (círculos de proximidad)
 - [ ] Sistema de cámara que sigue al jugador
 - [ ] Zoom in/out del mapa
 - [ ] Minimapa
@@ -75,10 +75,11 @@
 
 #### 🎯 **Chat de Proximidad**
 
-- [ ] Chat solo visible para jugadores cercanos
-- [ ] Indicadores visuales de quien está hablando
+- [x] Chat solo visible para jugadores cercanos
+- [x] Indicadores visuales de quien está hablando
+- [x] Lista estilo Discord con jugadores audibles
+- [x] Diferentes rangos de proximidad (100%, 50%, límite)
 - [ ] Globos de diálogo sobre jugadores
-- [ ] Diferentes rangos de proximidad
 
 #### 🔊 **Audio Chat** (Futuro)
 
@@ -230,6 +231,18 @@
 - [x] Scripts de npm para diferentes modos
 - [x] Documentación de configuración
 
+#### 🎵 **Sistema de Audio por Proximidad**
+
+- [x] Cálculo de distancias entre jugadores
+- [x] Volumen dinámico basado en proximidad
+- [x] Lista estilo Discord de jugadores audibles
+- [x] Indicadores visuales de quien está hablando
+- [x] Debug visual de rangos de proximidad
+- [x] Simulación de estados de "hablando"
+- [ ] Integración con WebRTC real
+- [ ] Zonas de oficina con audio al 100%
+- [ ] Push-to-talk functionality
+
 #### 🧪 **Testing**
 
 - [ ] Tests unitarios con Vitest
@@ -269,9 +282,10 @@
 2. ~~**Mejorar sprites visuales**~~ - ✅ **COMPLETADO** - Sprites animados implementados
 3. ~~**Sistema de colisiones**~~ - ✅ **COMPLETADO** - Sistema robusto con debug visual
 4. ~~**Sistema de debug configurable**~~ - ✅ **COMPLETADO** - Variables de entorno + utilidades
-5. **Implementar backend básico** - Socket.io server para multijugador 🔥 **PRÓXIMO**
-6. **Cargar mapas JSON** - Sistema de mapas dinámicos
-7. **Sistema de proximidad** - Detectar jugadores cercanos
+5. ~~**Sistema de audio por proximidad**~~ - ✅ **COMPLETADO** - Lista Discord + rangos dinámicos
+6. **Implementar backend básico** - Socket.io server para multijugador 🔥 **PRÓXIMO**
+7. **Cargar mapas JSON** - Sistema de mapas dinámicos
+8. **Zonas de oficina** - Audio al 100% en áreas específicas
 
 ### 🚧 **Bloqueos Conocidos**
 

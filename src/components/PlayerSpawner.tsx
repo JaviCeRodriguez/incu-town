@@ -6,31 +6,39 @@ const PlayerSpawner: React.FC = () => {
   const updateOtherPlayer = useGameStore((state) => state.updateOtherPlayer);
 
   useEffect(() => {
-    // Agregar algunos jugadores de prueba en posiciones válidas
+    // Agregar algunos jugadores de prueba con diferentes proximidades
     const testPlayers = [
       {
         id: "player1",
-        x: 160, // 5 tiles desde el borde izquierdo
-        y: 128, // 4 tiles desde el borde superior
+        x: 96, // Muy cerca del jugador principal (64, 64) - debe escucharse al 100%
+        y: 96,
         direction: "down" as const,
         state: "idle" as const,
         name: "Ana",
       },
       {
         id: "player2",
-        x: 320, // Posición segura lejos de paredes internas
-        y: 256,
+        x: 160, // A ~3 tiles del jugador principal - debe escucharse al ~50%
+        y: 128,
         direction: "right" as const,
         state: "walking" as const,
         name: "Carlos",
       },
       {
         id: "player3",
-        x: 480, // Posición segura
+        x: 320, // A ~6 tiles del jugador principal - debe escucharse apenas
         y: 192,
         direction: "left" as const,
         state: "walking" as const,
         name: "María",
+      },
+      {
+        id: "player4",
+        x: 600, // Muy lejos - no debe aparecer en el chat de voz
+        y: 400,
+        direction: "up" as const,
+        state: "idle" as const,
+        name: "Pedro",
       },
     ];
 
